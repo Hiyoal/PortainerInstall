@@ -1,0 +1,18 @@
+# docker-compose.yml 
+# Run: docker-compose up -d
+version: '3'
+
+services:
+  portainer:
+    image: portainer/portainer-ce:linux-arm-2.15.1
+    container_name: portainer
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /portainer/Files/AppData/Config/portainer:/data
+    ports:
+      - 9002:9000
+      - 8000:8000
